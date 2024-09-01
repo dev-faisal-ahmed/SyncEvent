@@ -3,17 +3,13 @@ import * as controller from './controller';
 import { Router } from 'express';
 import { validationHandler } from '../../middlewares';
 
-export const eventRouter = Router();
 export const eventsRouter = Router();
 
-//event
-eventRouter.post(
+eventsRouter.post(
   '/',
-  validationHandler(validation.addEvent),
+  validationHandler(validation.addEventValidationSchema),
   controller.addEvent
 );
 
-eventRouter.get('/:eventId', controller.getEVentDetails);
-
-// events
 eventsRouter.get('/', controller.getEvents);
+eventsRouter.get('/:eventId', controller.getEVentDetails);

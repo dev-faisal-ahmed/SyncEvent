@@ -4,6 +4,7 @@ import { isValidDate } from './common';
 export const dateGenerator = (required_error: string, message: string) => {
   return z
     .string({ required_error })
+    .regex(/^\d{4}-\d{2}-\d{2}$/, { message })
     .refine((date) => isValidDate(date), { message });
 };
 

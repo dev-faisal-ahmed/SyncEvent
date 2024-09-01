@@ -10,7 +10,7 @@ datasource db {
 model Event {
   id                Int                 @id @default(autoincrement())
   name              String
-  date              DateTime            @default(now())
+  date              String
   startTime         String
   endTime           String
   location          String
