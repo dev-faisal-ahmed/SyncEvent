@@ -20,6 +20,8 @@ eventsRouter.put(
   controller.updateEvent
 );
 
+eventsRouter.delete('/:eventId', controller.deleteEvent);
+
 eventsRouter.post(
   '/:eventId/participants',
   validationHandler(validation.addParticipantsValidationSchema),

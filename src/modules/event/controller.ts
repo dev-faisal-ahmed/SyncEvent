@@ -37,6 +37,16 @@ export const updateEvent = catchAsync(async (req, res) => {
   });
 });
 
+export const deleteEvent = catchAsync(async (req, res) => {
+  const eventId = Number(req.params.eventId);
+  const response = await service.deleteEvent(eventId);
+
+  return sendSuccessResponse(res, {
+    message: 'Event deleted successfully',
+    data: response,
+  });
+});
+
 export const addParticipants = catchAsync(async (req, res) => {
   const eventId = Number(req.params.eventId);
   const response = await service.addParticipants(eventId, req.body);
