@@ -15,7 +15,7 @@ model Event {
   endTime           String
   location          String
   description       String
-  EventParticipents EventParticipants[]
+  EventParticipants EventParticipants[]
 }
 
 model EventParticipants {

@@ -13,5 +13,7 @@ eventRouter.post(
   controller.addEvent
 );
 
+eventRouter.get('/:eventId', controller.getEVentDetails);
+
 // events
 eventsRouter.get('/', controller.getEvents);

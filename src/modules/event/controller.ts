@@ -17,3 +17,12 @@ export const getEvents = catchAsync(async (req, res) => {
     data: response.events,
   });
 });
+
+export const getEVentDetails = catchAsync(async (req, res) => {
+  const response = await service.getEventDetails(Number(req.params.eventId));
+
+  return sendSuccessResponse(res, {
+    message: 'Event details retrieved successfully',
+    data: response,
+  });
+});
