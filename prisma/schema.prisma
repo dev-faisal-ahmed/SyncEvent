@@ -20,6 +20,7 @@ model Event {
 }
 
 model EventParticipants {
+  id      String @default(uuid())
   email   String
   eventId Int
   event   Event  @relation(fields: [eventId], references: [id])

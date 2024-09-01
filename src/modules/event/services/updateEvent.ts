@@ -25,6 +25,7 @@ export const updateEvent = async (
         id: { not: eventId },
         date: payload.date || event.date,
         location: payload.location || event.location,
+        isDeleted: false,
         OR: [
           {
             /* case 1 :

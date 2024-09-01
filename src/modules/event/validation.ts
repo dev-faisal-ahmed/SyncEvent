@@ -68,5 +68,12 @@ export const updateEventValidationSchema = z
     }
   );
 
+export const addParticipantsValidationSchema = z.object({
+  participants: z.array(z.string().email({ message: 'Invalid Email' })),
+});
+
 export type TAddEventPayload = z.infer<typeof addEventValidationSchema>;
 export type TUpdateEventPayload = z.infer<typeof updateEventValidationSchema>;
+export type TAddParticipantsPayload = z.infer<
+  typeof addParticipantsValidationSchema
+>;

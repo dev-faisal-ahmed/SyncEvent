@@ -18,6 +18,7 @@ export const addEvent = async ({
         where: {
           date,
           location,
+          isDeleted: false,
           OR: [
             {
               /* case 1 :

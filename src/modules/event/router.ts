@@ -19,3 +19,9 @@ eventsRouter.put(
   validationHandler(validation.updateEventValidationSchema),
   controller.updateEvent
 );
+
+eventsRouter.post(
+  '/:eventId/participants',
+  validationHandler(validation.addParticipantsValidationSchema),
+  controller.addParticipants
+);

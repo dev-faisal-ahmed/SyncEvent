@@ -36,3 +36,13 @@ export const updateEvent = catchAsync(async (req, res) => {
     data: response,
   });
 });
+
+export const addParticipants = catchAsync(async (req, res) => {
+  const eventId = Number(req.params.eventId);
+  const response = await service.addParticipants(eventId, req.body);
+
+  return sendSuccessResponse(res, {
+    message: 'Participants added successfully',
+    data: response,
+  });
+});
