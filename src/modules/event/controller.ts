@@ -7,3 +7,13 @@ export const addEvent = catchAsync(async (req, res) => {
 
   return sendSuccessResponse(res, { message: 'Event created', data: response });
 });
+
+export const getEvents = catchAsync(async (req, res) => {
+  const response = await service.getEvents(req.query);
+
+  return sendSuccessResponse(res, {
+    message: 'Event retrieved successfully',
+    meta: response.meta,
+    data: response.events,
+  });
+});
