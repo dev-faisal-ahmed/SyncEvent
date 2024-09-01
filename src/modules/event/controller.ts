@@ -26,3 +26,13 @@ export const getEVentDetails = catchAsync(async (req, res) => {
     data: response,
   });
 });
+
+export const updateEvent = catchAsync(async (req, res) => {
+  const eventId = Number(req.params.eventId);
+  const response = await service.updateEvent(eventId, req.body);
+
+  return sendSuccessResponse(res, {
+    message: 'Event updated successfully',
+    data: response,
+  });
+});

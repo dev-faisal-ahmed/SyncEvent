@@ -13,3 +13,9 @@ eventsRouter.post(
 
 eventsRouter.get('/', controller.getEvents);
 eventsRouter.get('/:eventId', controller.getEVentDetails);
+
+eventsRouter.put(
+  '/:eventId',
+  validationHandler(validation.updateEventValidationSchema),
+  controller.updateEvent
+);

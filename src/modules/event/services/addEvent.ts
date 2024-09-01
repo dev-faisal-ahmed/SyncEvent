@@ -18,13 +18,41 @@ export const addEvent = async ({
         where: {
           date,
           location,
-          AND: [
+          OR: [
             {
-              OR: [
-                // events those end after the new events starts
-                { startTime: { lt: endTime } },
-                // events those start before the new event's ends
-                { endTime: { gt: startTime } },
+              /* case 1 :
+            other event => StartTime : 12:30 
+            new event => StartTime : 12:00 and endTime 01:00
+            S------OS------E-----------OE
+            which conflicts
+            */
+              AND: [
+                { startTime: { gte: startTime } },
+                { startTime: { lte: endTime } },
+              ],
+            },
+            {
+              /* case 2 :
+            other event => StartTime : 12:30 and endTime : 02:00
+            new event => StartTime : 12:40 and endTime 01:00
+            OS----S------E--------OE
+            which conflicts
+            */
+              AND: [
+                { startTime: { lte: startTime || startTime } },
+                { endTime: { gte: endTime || endTime } },
+              ],
+            },
+            {
+              /* case 3 :
+            other event => endTime : 02:00
+            new event => StartTime : 01:30 and endTime 02:10
+            S------OE------E
+            which conflicts
+            */
+              AND: [
+                { endTime: { gte: startTime || startTime } },
+                { endTime: { lte: endTime || endTime } },
               ],
             },
           ],
