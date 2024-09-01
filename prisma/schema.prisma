@@ -15,10 +15,10 @@ model Event {
   endTime           String
   location          String
   description       String
-  EventParticipents EventParticipents[]
+  EventParticipents EventParticipants[]
 }
 
-model EventParticipents {
+model EventParticipants {
   email   String
   eventId Int
   event   Event  @relation(fields: [eventId], references: [id])

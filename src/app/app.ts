@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { appRouter } from './router';
+import { globalErrorHandler } from '../middlewares';
 
 export const app = express();
 
@@ -18,3 +19,5 @@ app.get('/', (_req, res) => {
 app.all('*', (_req, res) => {
   res.status(404).json({ ok: false, message: 'This path does not exist' });
 });
+
+app.use(globalErrorHandler);
