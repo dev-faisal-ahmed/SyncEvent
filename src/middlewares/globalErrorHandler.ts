@@ -29,6 +29,11 @@ export const globalErrorHandler: ErrorRequestHandler = (
       ''
     );
   }
+
+  // handling prisma error
+  if (error.name === 'PrismaClientKnownRequestError')
+    message = `In ${error.meta?.modelName} ${error.meta?.cause}`;
+
   const errorInfo = NODE_ENV === 'development' ? error : null;
 
   return sendErrorResponse(res, { status, message, error: errorInfo });

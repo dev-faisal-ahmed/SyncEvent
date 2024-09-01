@@ -56,3 +56,16 @@ export const addParticipants = catchAsync(async (req, res) => {
     data: response,
   });
 });
+
+export const deleteParticipant = catchAsync(async (req, res) => {
+  const { participantId, eventId } = req.params;
+  const response = await service.deleteParticipant(
+    participantId,
+    Number(eventId)
+  );
+
+  return sendSuccessResponse(res, {
+    message: 'Participants deleted successfully',
+    data: response,
+  });
+});
